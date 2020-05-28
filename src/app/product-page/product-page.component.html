@@ -1,0 +1,27 @@
+<div class="productsPage">
+
+  <div class="box filter_box">
+    <h1>Filters</h1>
+    <input [(ngModel)]="searchText" type="text" placeholder="Search by code">
+    <h4>Floors:</h4>
+    <p *ngFor="let item of sectionsFloors" (click)="filterFloor(item.floor)">{{item.floor}}</p>
+    <h4>Sections:</h4>
+      <p *ngFor="let item of sectionsFloors" (click)="filterSection(item.section)">{{item.section}}</p>
+      <p (click)="showAll()">All Products</p>
+  </div>
+
+  <div class="box product__box">
+    <h1>Products</h1>
+    <p>Showing Products</p> <hr>
+    <div class="productsBox">
+      <div *ngFor="let item of currentArray | search: searchText; let i = index">
+        <p>Code: <b>{{item.code}}</b> </p>
+        <p>Quantity: {{item.quantity}}</p>
+        <p>Location: {{item.floor}} / {{item.section}}</p>
+        <button (click)="getCode(item.code)">UPDATE</button>
+        <hr>
+      </div>
+    </div>
+  </div>
+
+</div>

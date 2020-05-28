@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="product">
+  <h1>Add Product</h1>
+
+    <h2>Code</h2>
+    <input type="text" formControlName="code" [class.error]="form.get('code').touched && form.get('code').invalid">
+    <p *ngIf="form.get('code').touched && form.get('code').invalid">
+      <small *ngIf="form.get('code').errors['required']">Code Required</small>
+    </p>
+    <small *ngIf="codeError">Enter Unique Code</small>
+
+    <h2>Quantity</h2>
+    <input type="number" formControlName="quantity" [class.error]="form.get('quantity').touched && form.get('quantity').invalid">
+    <p *ngIf="form.get('quantity').touched && form.get('quantity').invalid">
+      <small *ngIf="form.get('quantity').errors['required']">Quantity Required</small>
+    </p>
+
+    <h2>Floor</h2>
+    <select formControlName="floor" [class.error]="form.get('floor').touched && form.get('floor').invalid">
+      <p *ngIf="form.get('floor').touched && form.get('floor').invalid">
+        <small *ngIf="form.get('floor').errors['required']">Floor Required</small>
+      </p>
+    <option [value]="item.floor" *ngFor="let item of floorsSections; let i = index">{{item.floor}}</option>
+    </select>
+
+    <h2>Section</h2>
+    <select formControlName="section" [class.error]="form.get('section').touched && form.get('section').invalid">
+      <p *ngIf="form.get('section').touched && form.get('section').invalid">
+        <small *ngIf="form.get('section').errors['required']">Section Required</small>
+      </p>
+      <option [value]="item.section" *ngFor="let item of floorsSections; let i = index">{{item.section}}</option>
+    </select>
+
+    <button type="submit" [disabled]="form.invalid">SUBMIT</button>
+    <notifier-container></notifier-container>
+
+  </div>
+</form>
